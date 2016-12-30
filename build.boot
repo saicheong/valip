@@ -2,12 +2,12 @@
   :source-paths #{"src"}
   :resource-paths #{"src"}
 
-  :dependencies '[[org.clojure/clojure "1.7.0"]
-                  [adzerk/boot-test "1.0.7"]
-                  [org.clojure/clojurescript "1.7.228"]
-                  [adzerk/boot-cljs "1.7.170-3"]
-                  [crisptrutski/boot-cljs-test "0.2.1"]
-                  [adzerk/bootlaces "0.1.13"]])
+  :dependencies '[[org.clojure/clojure "1.7.0" :scope "provided"]
+                  [adzerk/boot-test "1.1.0" :scope "test"]
+                  [org.clojure/clojurescript "1.7.228" :scope "provided"]
+                  [adzerk/boot-cljs "1.7.170-3" :scope "test"]
+                  [crisptrutski/boot-cljs-test "0.2.1" :scope "test"]
+                  [adzerk/bootlaces "0.1.13" :scope "test"]])
 
 (require '[adzerk.boot-test :refer [test]]
          '[adzerk.boot-cljs :refer [cljs]]
