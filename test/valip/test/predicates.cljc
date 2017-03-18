@@ -18,7 +18,9 @@
                                        at-most
                                        at-least
                                        between
-                                       url?]]
+                                       url?
+                                       date-format
+                                       html5-date?]]
              [cljs.test :refer-macros [deftest is]])))
 
 (deftest test-present?
@@ -153,3 +155,14 @@
   (is (not ((between 1 10) "11")))
   (is (not ((between 1 10) "")))
   (is (not ((between 1 10) nil))))
+
+(deftest test-date-format
+  (is ((date-format "dd-MM-yyyy") "01-01-2017"))
+  (is (not ((date-format "dd-MM-yyyy") "01-13-2017")))
+  (is (not ((date-format "dd-MM-yyyy") "32-01-2017")))
+  (is (not ((date-format "dd-MM-yyyy") "")))                      ; corner case
+  (is (not ((date-format "dd-MM-yyyy") nil))))                    ; corner case
+
+(deftest test-html5-date?
+  (is (html5-date? "2017-02-12"))
+  (is (not (html5-date? "2017-13-12"))))

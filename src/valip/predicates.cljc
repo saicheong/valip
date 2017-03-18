@@ -3,11 +3,13 @@
 All predicates in this namespace are considered portable between different
 Clojure implementations."
   #?(:clj (:require [clojure.string :as str]
+                    [clj-time.format :as time-format]
                     [clojure.edn :refer [read-string]]
                     [valip.macros :refer [defpredicate]])
      :cljs (:require [clojure.string :as str]
              [cljs.reader :refer [read-string]]
-             [goog.Uri :as guri]))
+             [goog.Uri :as guri]
+             [cljs-time.format :as time-format]))
   #?(:clj (:refer-clojure :exclude [read-string])
      :cljs (:require-macros [valip.macros :refer [defpredicate]]))
   #?(:clj (:import (java.net URI URISyntaxException)
@@ -149,3 +151,22 @@ Clojure implementations."
                       [email-address?]
                       (if-let [domain (second (re-matches #".*@(.*)" email))]
                         (boolean (dns-lookup domain "MX")))))
+
+(defn- parse-date-time [format input]
+  (let [formatter (time-format/formatter format)]
+    (if (present? input)
+      (try
+        (time-format/parse formatter input)
+        #?(:clj (catch IllegalArgumentException _ nil)
+           :cljs (catch ExceptionInfo _ nil))))))
+
+(defn date-format
+  "Creates a function for parsing a date using the supplied format string."
+  [format]
+  (partial parse-date-time format))
+
+(defn html5-date?
+  "Returns true if the string is one that could be returned by a HTML5 date
+  input element."
+  [s]
+  (boolean (parse-date-time "yyyy-MM-dd" s)))
