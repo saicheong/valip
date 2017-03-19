@@ -11,9 +11,6 @@
                   [clj-time "0.13.0"]
                   [com.andrewmcveigh/cljs-time "0.4.0"]])
 
-(require '[boot.lein])
-(boot.lein/generate)
-
 (require '[adzerk.boot-test :refer [test]]
          '[adzerk.boot-cljs :refer [cljs]]
          '[crisptrutski.boot-cljs-test :refer [test-cljs]]
@@ -47,3 +44,10 @@
            (watch)
            (test-cljs)
            (test)))
+
+(deftask install-jar []
+         (merge-env! :resource-paths #{"src"})
+         (comp
+           (pom)
+           (jar)
+           (install)))

@@ -1,6 +1,8 @@
 (defproject
-  boot-project
-  "0.0.0-SNAPSHOT"
+  org.clojars.saicheong/valip "0.4.0-SNAPSHOT"
+  :description "Functional validation library for Clojure and ClojureScript.
+                Forked from https://github.com/cemerick/valip"
+  :url "http://github.com/saicheong/valip"
   :repositories
   [["clojars" {:url "https://clojars.org/repo/"}]
    ["maven-central" {:url "https://repo1.maven.org/maven2"}]]
@@ -13,6 +15,7 @@
    [adzerk/bootlaces "0.1.13" :scope "test"]
    [clj-time "0.13.0"]
    [com.andrewmcveigh/cljs-time "0.4.0"]]
+  :clean-targets ^{:protect false} ["resources" "dev-resources" :target-path]
   :source-paths
   ["src"]
   :resource-paths
