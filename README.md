@@ -3,21 +3,21 @@
 Valip is a validation library for Clojure. It is primarily designed to validate
 keyword-string maps, such as one might get from a HTML form.
 
-**This is an experimental fork of [James
-Reeves](http://github.com/weavejester)'
-[valip](http://github.com/weavejester/valip) library.**  The differences
-between this and that are significant:
+This is a fork of [Chas Emerick](http://github.com/cemerick)'s
+[valip](http://github.com/cemerick/valip) library which, in turn, was a
+fork of [James Reeves's valip](http://github.com/weavejester/valip) library.
 
-1. I'm trying to make this fork as portable as possible between Clojure and
-   (JavaScript) ClojureScript.
-2. Since I'm breaking stuff anyway, I'm making all sorts of changes and
-   additions to the original predicates and such, hopefully all for the better.
+It come from following the step by step instruction on [Mimmo Cosenza](http://github.com/magomimmo)'s
+[tutorial](http://github.com/magomimmo/modern-cljs/blob/master/doc/second-edition/tutorial-19.md)
+on migration of CLJ/CLJS portable libraries to use CLJ/CLJS Reader Conditional extension.
+I'm using this fork to learn CLJ/CLJS and experience some of the activities around
+open source contribution.
 
 # Installation
 
-Add the following dependency to your `project.clj` file:
+Add the following dependency to your `project.clj` file or to your `build.boot` file:
 
-    [com.cemerick/valip "0.3.2"]
+    [org.clojars.saicheong/valip "0.4.0-SNAPSHOT"]
 
 # Usage
 
@@ -60,6 +60,10 @@ For example:
 
     => {:age ["must be over 18"])
 
+You can see an example of usage of the valip library in a sample [Hoplon](http://hoplon.io/) input form
+[here](http://github.com/saicheong/hoplon-input).
+
+
 # Predicates
 
 Valip has a number of useful predicates and functions that generate predicates.
@@ -71,6 +75,6 @@ Platform-specifc predicates can be found in `valip.java.predicates` and
 
 ## License
 
-Copyright © 2012 James Reeves
+Copyright © 2012-2017 James Reeves and Chas Emerick
 
 Distributed under the Eclipse Public License, the same as Clojure.
